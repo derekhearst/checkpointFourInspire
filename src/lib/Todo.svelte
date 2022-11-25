@@ -48,8 +48,8 @@
 
 <main>
 	<header>
-		<p>Todo's</p>
-		<p>{notesLeft} left</p>
+		<p>Things to do</p>
+		<p>{notesLeft} things left</p>
 	</header>
 	<hr />
 	<ul>
@@ -59,8 +59,14 @@
 					<input type="checkbox" bind:checked={note.completed} on:change={() => markCompleted(note)} />
 					<p>{note.description}</p>
 				</div>
-				<i class="mdi mdi-delete cursor-pointer" on:click={() => handleRemove(note)} />
+				<i class="mdi mdi-trash-can cursor-pointer" on:click={() => handleRemove(note)} />
 			</li>
+
+			{:else}
+			<span class="flex items-center gap-4">
+				<p>All Done!</p>
+				<i class="mdi mdi-thumb-up text-4xl"></i>
+			</span>
 		{/each}
 	</ul>
 	<form on:submit|preventDefault={createTodo}>
@@ -74,9 +80,14 @@
 		@apply flex justify-between;
 	}
 	main {
-		@apply flex flex-col text-left p-4 gap-3 flex-grow md:flex-grow-0 text-white;
+		@apply flex flex-col text-left p-4 gap-3  flex-grow md:flex-grow-0 overflow-hidden text-ellipsis text-white;
 		background-color: rgba(0, 0, 0, 0.589);
 		backdrop-filter: blur(10px);
+		transform-origin: bottom right;
+		transition: all cubic-bezier(0.075, 0.82, 0.165, 1) .3s;
+	}
+	main:hover{
+		scale: 2;
 	}
 	hr {
 		border-color: rgba(255, 255, 255, 0.268);
@@ -88,7 +99,7 @@
 		color: rgba(255, 255, 255, 0.508);
 	}
 	li {
-		@apply flex justify-between gap-3;
+		@apply flex justify-between gap-3 text-ellipsis;
 	}
 	form {
 		@apply flex gap-2;

@@ -28,17 +28,22 @@
 </script>
 
 <main style="--bgImage: url({bgImage})">
-	<Login bind:hidden={loginHidden} bind:userName={user} bind:image={bgImage} />
-
+	{#if !loginHidden}
+		<Login bind:hidden={loginHidden} bind:userName={user} bind:image={bgImage} />
+	{:else}
 	<header>
 		<p class="blurred flex-grow md:flex-grow-0 h-fit text-white cursor-default">Image by {photographer}</p>
 		<Weather class="" />
 	</header>
 	<Time />
 	<footer>
-		<q class="blurred text-sm flex-grow md:flex-grow-0 text-white cursor-default" title={author}>{quote}</q>
+		<q class="blurred italic text-sm flex-grow md:flex-grow-0 text-white cursor-default" title={author}>{quote}</q>
 		<Todo {user} />
 	</footer>
+		 <!-- else content here -->
+	{/if}
+
+	
 </main>
 
 <style>
