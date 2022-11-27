@@ -16,9 +16,7 @@
 
 	async function createTodo(e) {
 		let res = await axios.post("https://bcw-sandbox.herokuapp.com/api/" + user + "/todos/", {
-			completed: false,
-			description: window.event.target.description.value,
-			user: user,
+			description: window.event.target.description.value,		
 		})
 		notes.push(res.data)
 		notes = notes

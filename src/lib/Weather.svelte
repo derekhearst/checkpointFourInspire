@@ -5,6 +5,7 @@
 	let k = 0
 	let currVariation = "f"
 	let currTemp = f
+	
 	async function getWeather() {
 		let res = await axios.get("https://bcw-sandbox.herokuapp.com/api/weather/")
 		weather = res.data
@@ -31,7 +32,7 @@
 </script>
 
 <main>
-	<h1 on:click={swapTemp}>{currTemp}&deg; {currVariation}</h1>
+	<h1 on:click={swapTemp}> {currTemp}&deg; {currVariation}</h1>
 	<p>{weather.name}</p>
 	<img src="https://images.emojiterra.com/twitter/v13.1/512px/2600.png" />
 </main>
